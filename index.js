@@ -1,5 +1,4 @@
-
-const target = document.querySelector('.target')
+const target = document.querySelector('.danger-zone')
 const scoreboard = document.querySelector('.score-board')
 const drops = []
 
@@ -8,14 +7,20 @@ function createDropElement() {
 	div.className = 'drop'
 	return div
 }
-
+function createScore(drop, finalScore){
+	const score = document.createElement('p')
+	score.innerText = `${drop.id} - ${finalScore}`
+	scoreboard.appendChild(score)
+}
 function doDrop(){
 	const element = createDropElement()
 	const drop = {
 		id: Date.now() + Math.random(),
 		element,
 		location: {
+			// random x axis start point
 			x: window.innerWidth * Math.random(),
+			// y axis start off screen
 			y: -100,
 		},
 		velocity: {
@@ -62,10 +67,9 @@ function update(){
 			const score = Math.abs(window.innerWidth / 2 - x)
 			if(score <= targetHalfWidth){
 				console.log('target hit', drop)
-				const finalScore = Math.abs(1 - (score / targetHalfWidth) * 100)
-				console.log(finalScore)
+				const finalScore = Math.floor(100 - (Math.abs(1 - (score / targetHalfWidth) * 100)))
 				scoreboard.style.display = 'initial'
-
+				createScore(drop, finalScore)
 			}
 		}
 	})
@@ -75,8 +79,7 @@ function draw(){
 	drops.forEach(updateDropPosition)
 }
 
-const testPlayers = ['p1', 'p2', 'p3', 'p4', 'p5', 'p6', 'p7', 'p8', 'p9', 'p10']
-
+const testPlayers = ['p1', 'p2', 'p3', 'p4', 'p5', 'p6', 'p7']
 testPlayers.forEach(doDrop)
 
 function gameLoop(){
