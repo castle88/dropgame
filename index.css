@@ -4,10 +4,8 @@
 	margin: 0;
 }
 html, body{
-
 	font-family: sans-serif;
 }
- 
 .score-board{
 	display: none;
 	position: fixed;
@@ -47,7 +45,7 @@ html, body{
 	height: 35px;
 	background-image: url('./assets/plasma.png');
 	background-position: center;
-	background-size: 90px;
+	background-size: 100px;
 	border-radius: 50%;
 	box-shadow: 0px 0px 20px 15px hsla(200, 100%, 50%, 100%);
 } 
