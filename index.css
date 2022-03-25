@@ -4,9 +4,10 @@
 	margin: 0;
 }
 html{
-	background: hsl(270, 14%, 33%);
+	background: none;
 	font-family: sans-serif;
 }
+ 
 .score-board{
 	display: none;
 	position: fixed;
