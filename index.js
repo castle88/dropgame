@@ -1,4 +1,5 @@
 const target = document.querySelector('.danger-zone')
+const spartan = document.querySelector('.spartan')
 const scoreboard = document.querySelector('.score-board')
 const drops = []
 
