@@ -1,6 +1,7 @@
 const target = document.querySelector('.danger-zone')
 const spartan = document.querySelector('.spartan')
 const scoreboard = document.querySelector('.score-board')
+const shieldbar = document.querySelector('.shield-bar')
 const drops = []
 
 function createDropElement() {
@@ -13,10 +14,10 @@ function createScore(drop, finalScore){
 	score.innerText = `${drop.id} - ${finalScore}`
 	scoreboard.appendChild(score)
 }
-function doDrop(){
+function doDrop(player){
 	const element = createDropElement()
 	const drop = {
-		id: Date.now() + Math.random(),
+		id: player,
 		element,
 		location: {
 			// random x axis start point
@@ -26,7 +27,7 @@ function doDrop(){
 		},
 		velocity: {
 			x: Math.random() * (Math.random() > 0.5 ? - 1 : 1) * 10,
-			y: 5 + Math.random() * 5
+			y: 3 + Math.random() * 3
 		}
 	}
 	drops.push(drop)
@@ -34,6 +35,7 @@ function doDrop(){
 	updateDropPosition(drop)
 }
 
+// set drop coordinates to css properties
 function updateDropPosition(drop){
 	if(drop.landed) return
 	drop.element.style.top = drop.location.y + 'px'
@@ -63,29 +65,36 @@ function update(){
 			setTimeout(() => drop.element.classList.add('boom'), 1000)
 			setTimeout(() => drop.element.classList.add('landed'), 1500)
 			const { x } = drop.location;
-			// const score = (1-Math.abs(window.innerWidth/2-x)/window.innerWidth/2)*100
 
+			// distance from center
 			const score = Math.abs(window.innerWidth / 2 - x)
 			if(score <= targetHalfWidth){
 				console.log('target hit', drop)
+				// within scoring zone reduce shielbar width by 'finalScore' % and add to scoreboard
 				const finalScore = Math.floor(100 - (Math.abs(1 - (score / targetHalfWidth) * 100)))
 				scoreboard.style.display = 'initial'
+				shieldbar.style.width = 100 - finalScore + '%'
 				createScore(drop, finalScore)
 			}
 		}
 	})
 }
 
+
+// modify css for each drop element on screen
 function draw(){
 	drops.forEach(updateDropPosition)
 }
 
+// create test drops
 const testPlayers = ['p1', 'p2', 'p3', 'p4', 'p5', 'p6', 'p7']
-testPlayers.forEach(doDrop)
+testPlayers.forEach(player => doDrop(player))
 
+// update as soon as possible 
 function gameLoop(){
 	update()
 	draw()
+	// continue updating
 	requestAnimationFrame(gameLoop)
 }
 

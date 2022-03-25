@@ -32,7 +32,7 @@ html, body{
 	transform: translateX(-50%);
 }
 .danger-zone{
-	border: 1px solid red;
+	/* border: 1px solid red; */
 	position: fixed;
 	bottom: 0;
 	width: 35vmin;
@@ -49,8 +49,20 @@ html, body{
 	border-radius: 50%;
 	box-shadow: 0px 0px 20px 15px hsla(200, 100%, 50%, 100%);
 } 
-.drop > img{
-	width: 100%;
+.shield-container{
+	border: 2px solid black;
+	position: relative;
+	top: -16vmin;
+	width: 30%;
+	height: 2vmin;
+	margin: 0 auto;
+	border-radius: 15px;
+	padding: 3px;
+}
+.shield-bar{
+	background: green;
+	height: 100%;
+	border-radius: 15px;
 }
 .landed{
 	animation: shrink 1s ease-in-out;
