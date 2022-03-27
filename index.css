@@ -32,11 +32,9 @@ html, body{
 	transform: translateX(-50%);
 }
 .danger-zone{
-	/* border: 1px solid red; */
+	border: 1px solid red;
 	position: fixed;
-	bottom: 0;
 	width: 35vmin;
-	left: 50%;
 	transform: translate(-50%);
 }
 .drop{
