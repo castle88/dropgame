@@ -1,8 +1,12 @@
 const danger = document.querySelector(".danger-zone");
-// const spartan = document.querySelector('.spartan')
-// const scoreboard = document.querySelector('.score-board')
-// const shielbar = document.querySelector('.shield-bar')
+const scoreboard = document.querySelector(".score-board");
 const dropQueue = [];
+
+function createScore(drop, finalScore) {
+  const score = document.createElement("p");
+  score.innerText = `${drop.player} - ${finalScore}`;
+  scoreboard.appendChild(score);
+}
 
 const createDropElement = () => {
   const element = document.createElement("div");
@@ -16,8 +20,8 @@ class Drop {
     this.element = createDropElement();
     this.location = { x: Math.random() * window.innerWidth, y: -100 };
     this.velocity = {
-      x: Math.random() > 0.5 ? Math.random() * 5 : Math.random() * -5,
-      y: Math.random() * 10,
+      x: Math.random() * (Math.random() > 0.5 ? -1 : 1) * 10,
+      y: 2 + Math.random() * 3,
     };
     this.landed = false;
   }
@@ -154,15 +158,11 @@ class Game {
     this.update();
     this.draw();
     requestAnimationFrame(this.gameLoop);
-
-    if (this.target.health <= 0) {
-      this.stopGame();
-    }
   };
   stopGame = () => {
     console.log("gameover");
     this.target.removeFromPage();
-    cancelAnimationFrame(this.gameLoop);
+    setTimeout(() => location.reload(), 3000);
   };
   update = () => {
     dropQueue.forEach((drop) => {
@@ -184,46 +184,66 @@ class Game {
         drop.velocity.x = 0;
         drop.landed = true;
         setTimeout(() => drop.element.classList.add("boom"), 1000);
-        // setTimeout(() => drop.element.classList.add("landed"), 1500);
+        setTimeout(() => drop.element.classList.add("landed"), 1500);
 
         const { x } = drop.location;
 
         // const score = Math.abs(window.innerWidth / 2 - x);
-        const targetLeft =
-          +this.target.element.style.left.replace("px", "") -
-          this.target.element.clientWidth / 2;
-        const hitLeft = targetLeft < x - drop.element.clientWidth / 2;
-        const hitRight =
-          targetLeft + this.target.element.clientWidth >
+        // const targetCenter =
+        //   +this.target.element.style.left.replace("px", "") +
+        //   this.target.element.clientWidth / 2;
+        // const hitLeft =
+        //   targetCenter - this.target.element.clientWidth <
+        //   x - drop.element.clientWidth / 2;
+        // const hitRight =
+        //   targetCenter + this.target.element.clientWidth / 2 >
+        //   x - drop.element.clientWidth / 2;
+
+        const center = this.target.element.style.left.replace("px", "");
+        const leftHit =
+          center - this.target.element.clientWidth / 2 <
           x - drop.element.clientWidth / 2;
-        console.log("width", this.target.element.clientWidth);
-        console.log("left hit", hitLeft);
-        console.log("right hit", hitRight);
+        const rightHit =
+          +center + this.target.element.clientWidth / 2 >
+          x - drop.element.clientWidth / 2;
         console.log("x", x);
+        console.log(leftHit, rightHit);
 
-        console.log(+this.target.element.style.left.replace("px", ""));
+        // console.log("width", this.target.element.clientWidth);
+        // console.log("left hit", hitLeft);
+        // console.log("right hit", hitRight);
+        // console.log("x", x);
 
-        console.log(
-          +this.target.element.style.left.replace("px", "") +
-            this.target.element.clientWidth
-        );
-        if (hitLeft && hitRight) {
+        // console.log(+this.target.element.style.left.replace("px", ""));
+
+        // console.log(
+        //   +this.target.element.style.left.replace("px", "") +
+        //     this.target.element.clientWidth
+        // );
+
+        if (leftHit && rightHit) {
           console.log("target hit", drop);
-          const score = Math.abs(
-            this.target.element.clientWidth / 2 +
-              targetLeft -
-              (x + drop.element.clientWidth / 2)
-          );
+
+          const score = Math.abs(center - (x + drop.element.clientWidth / 2));
           console.log("score", score);
-          //   const finalScore = Math.floor(
-          //     100 -
-          //       Math.abs(
-          //         // 1 - (score / (this.target.element.clientWidth / 2)) * 100
-          //       )
-          //   );
-          //   console.log(finalScore);
-          //   this.target.takeDamage(finalScore);
-          //   console.log("target health", this.target.health);
+
+          const finalScore = Math.abs(
+            Math.floor(
+              100 -
+                Math.abs(
+                  1 - (score / (this.target.element.clientWidth / 2)) * 100
+                )
+            )
+          );
+          console.log(finalScore);
+          if (this.target.health - finalScore <= 0) {
+            createScore(drop, finalScore);
+            setTimeout(() => this.stopGame(), 1500);
+          } else {
+            createScore(drop, finalScore);
+            this.target.takeDamage(finalScore);
+            console.log("target health", this.target.health);
+          }
         }
       }
     });
@@ -233,5 +253,7 @@ class Game {
     dropQueue.forEach((drop) => drop.updatePosition());
   };
 }
-
-const newGame = new Game();
+const startNewGame = () => {
+  const newGame = new Game();
+  newGame.startGame();
+};

@@ -1,87 +1,88 @@
-*{
-	box-sizing: border-box;
-	padding: 0;
-	margin: 0;
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }
-html, body{
-	font-family: sans-serif;
+html,
+body {
+  font-family: sans-serif;
 }
-.score-board{
-	display: none;
-	position: fixed;
-	top: 10px;
-	left: 10px;
-	background: rgba(0, 0, 0, .5);
-	color: white;
-	font-weight: bold;
-	padding: 1rem;
+.score-board {
+  /* display: none; */
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  font-weight: bold;
+  padding: 1rem;
 }
 .score-board > h2 {
-	margin-bottom: 1rem;
-	text-decoration: underline;
+  margin-bottom: 1rem;
+  text-decoration: underline;
 }
-.spartan{
-	position: fixed;
-	background-image: url('./assets/master-chief.png');
-	background-position: center;
-	background-size: cover;
-	height: 20vmin;
-	width: 15vmin;
-	bottom: -3vmin;
-	left: 50%;
-	transform: translateX(-50%);
+.spartan {
+  position: fixed;
+  background-image: url("./assets/master-chief.png");
+  background-position: center;
+  background-size: cover;
+  height: 20vmin;
+  width: 15vmin;
+  bottom: -3vmin;
+  left: 50%;
+  transform: translateX(-50%);
 }
-.danger-zone{
-	border: 1px solid red;
-	position: fixed;
-	width: 35vmin;
-	transform: translate(-50%);
+.danger-zone {
+  border: 1px solid red;
+  position: fixed;
+  width: 35vmin;
+  transform: translate(-50%);
 }
-.drop{
-	position: fixed;
-	width: 35px;
-	height: 35px;
-	background-image: url('./assets/plasma.png');
-	background-position: center;
-	background-size: 100px;
-	border-radius: 50%;
-	box-shadow: 0px 0px 20px 15px hsla(200, 100%, 50%, 100%);
-} 
-.shield-container{
-	border: 2px solid black;
-	position: relative;
-	top: -16vmin;
-	width: 30%;
-	height: 2vmin;
-	margin: 0 auto;
-	border-radius: 15px;
-	padding: 3px;
+.drop {
+  position: fixed;
+  width: 35px;
+  height: 35px;
+  background-image: url("./assets/plasma.png");
+  background-position: center;
+  background-size: 100px;
+  border-radius: 50%;
+  box-shadow: 0px 0px 20px 15px hsla(200, 100%, 50%, 100%);
 }
-.shield-bar{
-	background: green;
-	height: 100%;
-	border-radius: 15px;
+.shield-container {
+  border: 2px solid black;
+  position: relative;
+  top: -16vmin;
+  width: 30%;
+  height: 2vmin;
+  margin: 0 auto;
+  border-radius: 15px;
+  padding: 3px;
 }
-.landed{
-	animation: shrink 1s ease-in-out;
-	transform: scale(0);
+.shield-bar {
+  background: green;
+  height: 100%;
+  border-radius: 15px;
 }
-.boom{
-	animation: boom .5s;
-;
+.landed {
+  animation: shrink 1s ease-in-out;
+  transform: scale(0);
+}
+.boom {
+  animation: boom 0.5s;
 }
 @keyframes shrink {
-	0%{
-		transform: scale(1);
-	}100%{
-		transform: scale(0);
-	}
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0);
+  }
 }
 @keyframes boom {
-	0%{
-		box-shadow: 0px 0px 20px 15px hsla(200, 100%, 50%, 100%);
-	}
-	100%{
-		box-shadow: 0px 0px 30px 200px hsla(190, 100%, 50%, 100%);
-	}
+  0% {
+    box-shadow: 0px 0px 20px 15px hsla(200, 100%, 50%, 100%);
+  }
+  100% {
+    box-shadow: 0px 0px 30px 200px hsla(190, 100%, 50%, 100%);
+  }
 }
