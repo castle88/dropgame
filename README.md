@@ -13,7 +13,7 @@ right now it is in a janky but working state.
 
 to start a game type in your browsers console *** startNewGame() ***
 
-to drop a single grenade in your browsers console type *** getDrop('<any String>') ***
+to drop a single grenade in your browsers console type *** getDrop('any string') ***
   - example getDrop('whoa dude')
   
 to drop a bunch of grenades 
