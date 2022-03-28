@@ -16,4 +16,5 @@ to start a game type in your browsers console *** startNewGame() ***
 to drop a single grenade in your browsers console type *** getDrop('<any String>') ***
   - example getDrop('whoa dude')
   
-to drop a bunch of grenades in your browsers console type *** ['a','b','c','d','e','f','g','h'].forEach(player => getDrop(player)) ***
+to drop a bunch of grenades 
+  in your browsers console type *** ['a','b','c','d','e','f','g','h'].forEach(player => getDrop(player)) ***
