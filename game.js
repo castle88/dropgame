@@ -76,58 +76,6 @@ class Target {
   };
 }
 
-// update = (target) =>{
-// 	dropQueue.forEach(drop => {
-// 		if(drop.landed) return
-
-// 		// console.log('location', drop.location)
-
-// 		drop.location.x += drop.velocity.x
-// 		drop.location.y += drop.velocity.y
-
-// 		if(drop.location.x + (drop.element.clientWidth / 2) >= window.innerWidth){
-// 			drop.velocity.x = -Math.abs(drop.velocity.x)
-// 		}else if(drop.location.x - (drop.element.clientWidth / 2) <= 0){
-// 			drop.velocity.x = Math.abs(drop.velocity.x)
-// 		}
-
-// 		if(drop.location.y + drop.element.clientHeight >= window.innerHeight){
-// 			drop.velocity.y = 0
-// 			drop.velocity.x = 0
-// 			drop.landed = true
-// 			setTimeout(() => drop.element.classList.add('boom'), 1000)
-// 			setTimeout(() => drop.element.classList.add('landed'), 1500)
-
-// 			const { x } = drop.location
-
-// 			const score = Math.abs(window.innerWidth / 2 - x)
-// 			if(score <= target.element.clientWidth / 2){
-// 				console.log('target hit', drop)
-// 				const finalScore = Math.floor(100 - (Math.abs(1 - (score / target.element.clientWidth / 2) * 100)))
-// 				target.takeDamage(finalScore)
-// 				console.log('target health', target.health)
-// 			}
-// 		}
-// 	})
-// }
-
-// draw = () => {
-// 	dropQueue.forEach(drop => drop.updatePosition())
-// }
-
-// const gameLoop = () => {}
-
-// const newGame = () => {
-// 	const target = new Target
-// 	target.addToPage()
-// 	gameLoop()
-// 	console.log()
-// 	if(target.health <= 0){
-// 		target.removeFromPage()
-// 		window.cancelAnimationFrame(gameLoop)
-// 	}
-// }
-
 const getDrop = (player) => {
   const plyr = new Drop(player);
 
@@ -137,15 +85,6 @@ const getDrop = (player) => {
   dropQueue.push(plyr);
 };
 
-// const p1 = new Drop('player1')
-// const spartan = new Target()
-// console.log(spartan)
-// spartan.addToPage()
-// console.log('width' + window.innerWidth)
-// console.log('spartan' + spartan.element.clientWidth)
-// console.log(spartan.element.lastChild)
-// console.log(spartan.element.lastChild.clientHeight)
-// console.log(spartan.element.lastChild.clientWidth)
 class Game {
   constructor() {
     this.target = new Target();
@@ -168,8 +107,6 @@ class Game {
     dropQueue.forEach((drop) => {
       if (drop.landed) return;
 
-      // console.log('location', drop.location)
-
       drop.location.x += drop.velocity.x;
       drop.location.y += drop.velocity.y;
 
@@ -188,17 +125,6 @@ class Game {
 
         const { x } = drop.location;
 
-        // const score = Math.abs(window.innerWidth / 2 - x);
-        // const targetCenter =
-        //   +this.target.element.style.left.replace("px", "") +
-        //   this.target.element.clientWidth / 2;
-        // const hitLeft =
-        //   targetCenter - this.target.element.clientWidth <
-        //   x - drop.element.clientWidth / 2;
-        // const hitRight =
-        //   targetCenter + this.target.element.clientWidth / 2 >
-        //   x - drop.element.clientWidth / 2;
-
         const center = this.target.element.style.left.replace("px", "");
         const leftHit =
           center - this.target.element.clientWidth / 2 <
@@ -208,18 +134,6 @@ class Game {
           x - drop.element.clientWidth / 2;
         console.log("x", x);
         console.log(leftHit, rightHit);
-
-        // console.log("width", this.target.element.clientWidth);
-        // console.log("left hit", hitLeft);
-        // console.log("right hit", hitRight);
-        // console.log("x", x);
-
-        // console.log(+this.target.element.style.left.replace("px", ""));
-
-        // console.log(
-        //   +this.target.element.style.left.replace("px", "") +
-        //     this.target.element.clientWidth
-        // );
 
         if (leftHit && rightHit) {
           console.log("target hit", drop);
