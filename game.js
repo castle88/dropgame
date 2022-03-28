@@ -98,6 +98,7 @@ const getDrop = (player) => {
 class Game {
   constructor() {
     this.target = new Target();
+    this.scores = [];
   }
   startGame = () => {
     this.target.addToPage();
@@ -114,8 +115,8 @@ class Game {
   // force end of gameLoop ******* would like a more elegant way to solve this
   stopGame = () => {
     console.log("gameover");
-    this.target.removeFromPage();
-    setTimeout(() => location.reload(), 3000);
+    //     this.target.removeFromPage();
+    setTimeout(() => location.reload(), 5000);
   };
 
   // main logic for game, update drop location determined by the drop velocity or stop if landed
@@ -185,9 +186,9 @@ class Game {
           if (this.target.health - finalScore <= 0) {
             // add score to scoreboard
             createScore(drop, finalScore);
-
+            this.target.removeFromPage();
             // end game reload page
-            setTimeout(() => this.stopGame(), 1500);
+            this.stopGame();
             // drop is a hit but not slaying
           } else {
             // add drop to scoreboard
@@ -205,7 +206,7 @@ class Game {
   draw = () => {
     dropQueue.forEach((drop) => drop.updatePosition());
   };
-}
+} // Game class close
 
 // create new game object
 const startNewGame = () => {
