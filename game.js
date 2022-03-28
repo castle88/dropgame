@@ -23,8 +23,8 @@ class Drop {
     this.element = createDropElement();
     this.location = { x: Math.random() * window.innerWidth, y: -100 };
     this.velocity = {
-      x: Math.random() * (Math.random() > 0.5 ? -1 : 1) * 10,
-      y: 2 + Math.random() * 3,
+      x: Math.random() * (Math.random() > 0.5 ? -1 : 1) * 8,
+      y: 2 + Math.random() * 5,
     };
     this.landed = false;
   }
@@ -213,3 +213,8 @@ const startNewGame = () => {
   const newGame = new Game();
   newGame.startGame();
 };
+startNewGame();
+const playas = ["p1", "p2", "p3", "p4", "p5", "p6", "p7", "p8", "p9", "p10"];
+playas.forEach((p) => {
+  getDrop(p);
+});
