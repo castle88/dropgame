@@ -18,3 +18,16 @@ to drop a single grenade in your browsers console type *** getDrop('any string')
   
 to drop a bunch of grenades 
   in your browsers console type *** ['a','b','c','d','e','f','g','h'].forEach(player => getDrop(player)) ***
+
+
+# intended how it works
+
+- on channel point redemption tmi.js will run startNewGame()
+
+- on chat typing !nade tmi.js will run getDrop(tmi->username)
+
+# need to figure out
+
+more elegant solution to end of game
+
+clean up code into more palettable chunks
