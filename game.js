@@ -184,7 +184,7 @@ class Game {
           // if drop is a slaying blow
           if (this.target.health - finalScore <= 0) {
             // add score to scoreboard
-            this.createScore(drop, finalScore);
+            createScore(drop, finalScore);
 
             // end game reload page
             setTimeout(() => this.stopGame(), 1500);
