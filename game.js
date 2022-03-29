@@ -227,8 +227,12 @@ client.connect();
 
 client.on("message", (channel, tags, message, self) => {
   if (message === "!start") {
+    console.log("self", self);
+    console.log("channel", channel);
+    console.log("tags", tags);
     startNewGame();
   }
+
   if (message === "!nade") {
     getDrop(tags.username);
   }
