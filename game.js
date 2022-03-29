@@ -159,15 +159,15 @@ class Game {
           +center + this.target.element.clientWidth / 2 >
           x - drop.element.clientWidth / 2;
 
-        console.log("x", x);
-        console.log(leftHit, rightHit);
+        // console.log("x", x);
+        // console.log(leftHit, rightHit);
 
         if (leftHit && rightHit) {
           console.log("target hit", drop);
 
           // difference between center of traget and center of drop
           const score = Math.abs(center - (x + drop.element.clientWidth / 2));
-          console.log("score", score);
+          // console.log("score", score);
 
           // probably redundant ****
           // dont really know why this calc is made
@@ -180,7 +180,7 @@ class Game {
             )
           );
 
-          console.log(finalScore);
+          // console.log(finalScore);
 
           // if drop is a slaying blow
           if (this.target.health - finalScore <= 0) {
@@ -195,7 +195,7 @@ class Game {
             createScore(drop, finalScore);
             this.target.takeDamage(finalScore);
 
-            console.log("target health", this.target.health);
+            // console.log("target health", this.target.health);
           }
         }
       }
@@ -206,14 +206,14 @@ class Game {
   draw = () => {
     dropQueue.forEach((drop) => drop.updatePosition());
   };
-} // Game class close
+} // Game class closing bracket
 
 // create new game object
 const startNewGame = () => {
   const newGame = new Game();
   newGame.startGame();
 };
-// startNewGame();
+
 // const playas = ["p1", "p2", "p3", "p4", "p5", "p6", "p7", "p8", "p9", "p10"];
 // playas.forEach((p) => {
 //   getDrop(p);
@@ -226,11 +226,10 @@ const client = new tmi.Client({
 client.connect();
 
 client.on("message", (channel, tags, message, self) => {
-  // "Alca: Hello, World!"
-  if (message.startsWith("!start")) {
+  if (self && message === "!start") {
     startNewGame();
   }
-  if (message.startsWith("!nade")) {
+  if (message === "!nade") {
     getDrop(tags.username);
   }
 });
