@@ -213,8 +213,30 @@ const startNewGame = () => {
   const newGame = new Game();
   newGame.startGame();
 };
-startNewGame();
+// startNewGame();
 const playas = ["p1", "p2", "p3", "p4", "p5", "p6", "p7", "p8", "p9", "p10"];
 playas.forEach((p) => {
   getDrop(p);
+});
+
+const client = new tmi.Client({
+  options: { debug: true, messagesLogLevel: "info" },
+  connection: {
+    reconnect: true,
+    secure: true,
+  },
+  identity: {
+    username: "bot-name",
+    password: "oauth:my-bot-token",
+  },
+  channels: ["my-channel"],
+});
+
+client.connect().catch(console.error);
+
+client.on("message", (channel, tags, message, self) => {
+  if (self) return;
+  if (message.toLowerCase() === "!hello") {
+    console.log(channel, `@${tags.username}, heya!`);
+  }
 });
