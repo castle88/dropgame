@@ -227,7 +227,10 @@ client.connect();
 
 client.on("message", (channel, tags, message, self) => {
   // "Alca: Hello, World!"
+  if (message.startsWith("!start")) {
+    startNewGame();
+  }
   if (message.startsWith("!nade")) {
-    console.log(`${tags["display-name"]}: ${message}`);
+    getDrop(tags.username);
   }
 });
