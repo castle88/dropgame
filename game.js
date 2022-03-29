@@ -214,10 +214,10 @@ const startNewGame = () => {
   newGame.startGame();
 };
 // startNewGame();
-const playas = ["p1", "p2", "p3", "p4", "p5", "p6", "p7", "p8", "p9", "p10"];
-playas.forEach((p) => {
-  getDrop(p);
-});
+// const playas = ["p1", "p2", "p3", "p4", "p5", "p6", "p7", "p8", "p9", "p10"];
+// playas.forEach((p) => {
+//   getDrop(p);
+// });
 
 const client = new tmi.Client({
   channels: ["whoa_dood"],
