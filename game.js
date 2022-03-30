@@ -21,8 +21,8 @@ class Game {
   // force end of gameLoop ******* would like a more elegant way to solve this
   stopGame = () => {
     console.log("gameover");
-    //     this.target.removeFromPage();
     setTimeout(() => location.reload(), 5000);
+    setTimeout(() => this.target.removeFromPage(), 1500);
   };
 
   // main logic for game, update drop location determined by the drop velocity or stop if landed
@@ -90,9 +90,11 @@ class Game {
 
           // if drop is a slaying blow
           if (this.target.health - finalScore <= 0) {
+            if (this.target.health <= 0) return;
+            this.target.takeDamage(this.target.health);
             // add score to scoreboard
             createScore(drop, finalScore);
-            this.target.removeFromPage();
+            // this.target.removeFromPage();
             // end game reload page
             this.stopGame();
             // drop is a hit but not slaying
