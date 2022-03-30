@@ -210,8 +210,9 @@ class Game {
 
 // create new game object
 const startNewGame = () => {
-  const newGame = new Game();
-  newGame.startGame();
+  // const newGame = new Game();
+  // newGame.startGame();
+  new Game().startGame();
 };
 
 // const playas = ["p1", "p2", "p3", "p4", "p5", "p6", "p7", "p8", "p9", "p10"];
