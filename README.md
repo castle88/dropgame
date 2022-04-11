@@ -32,3 +32,6 @@ to drop a bunch of grenades
 
 - on chat typing !nade tmi.js will run getDrop(tmi->username)
 
+# TODO
+- explore comfy.js as alternative to tmi.js
+- - comfy looks to be a bit simpler on twitch chat interactions and easier to follow channel point redemptions
