@@ -28,11 +28,7 @@ to drop a bunch of grenades
 # intended how it works
 
 - on channel point redemption tmi.js will run startNewGame()
+(currently !start starts new game)
 
 - on chat typing !nade tmi.js will run getDrop(tmi->username)
 
-# need to figure out
-
-more elegant solution to end of game
-
-clean up code into more palettable chunks
