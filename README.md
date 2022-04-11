@@ -1,5 +1,10 @@
 # dropgame
-dropgame clone
+dropgame clone themed for halo
+
+#demo
+
+https://user-images.githubusercontent.com/82413454/162652474-c5fd3a19-c1de-4323-8bce-8653641ce412.mp4
+
 
 # inspiration
 inspired by the drop game on twitch i dont know who made it or what its really called but if 
